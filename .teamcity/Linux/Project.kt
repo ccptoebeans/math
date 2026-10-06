@@ -30,8 +30,6 @@ object Project : Project({
     id("Linux")
     name = "linux"
 
-    buildType(_Self.buildTypes.CreateUniversalBuilds)
-
     buildType(linux_x64_Debug)
     buildType(linux_x64_Release)
     buildType(linux_arm64_Debug)
