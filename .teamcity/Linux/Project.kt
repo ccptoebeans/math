@@ -20,8 +20,11 @@ import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 import jetbrains.buildServer.configs.kotlin.buildFeatures.provideAwsCredentials
 
-val x64_Debug = CarbonBuildMacOS("Debug MacOS x64", "Debug", "x64-linux-debug", "amd64")
-val x64_Release = CarbonBuildMacOS("Release MacOS x64", "Release", "x64-linux-release", "amd64")
+val x64_Debug = CarbonBuildLinux("Debug MacOS x64", "Debug", "x64-linux-debug", "amd64")
+val x64_Release = CarbonBuildLinux("Release MacOS x64", "Release", "x64-linux-release", "amd64")
+
+val arm64_Debug = CarbonBuildLinux("Debug MacOS x64", "Debug", "arm64-linux-debug", "aarch64")
+val arm64_Release = CarbonBuildLinux("Release MacOS x64", "Release", "arm64-linux-release", "aarch64")
 
 object Project : Project({
     id("Linux")
@@ -30,9 +33,9 @@ object Project : Project({
     buildType(_Self.buildTypes.CreateUniversalBuilds)
 
     buildType(x64_Debug)
-    buildType(x64_Internal)
-    buildType(x64_TrinityDev)
     buildType(x64_Release)
+    buildType(arm64_Debug)
+    buildType(arm64_Release)
 })
 
 class CarbonBuildLinux(buildName: String, configType: String, preset: String, agentArchitecture: String) : BuildType({
@@ -171,6 +174,7 @@ class CarbonBuildLinux(buildName: String, configType: String, preset: String, ag
     requirements {
         startsWith("teamcity.agent.jvm.os.name", "Linux")
         startsWith("teamcity.agent.jvm.os.arch", agentArchitecture)
+        noLessThanVer("env.FENRIS_AGENT_VERSION", "1.0.0")
     }
 })
 
