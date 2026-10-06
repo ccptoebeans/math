@@ -1,4 +1,4 @@
-package MacOS
+package Linux
 
 import jetbrains.buildServer.configs.kotlin.DslContext
 import jetbrains.buildServer.configs.kotlin.Project
@@ -20,11 +20,11 @@ import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 import jetbrains.buildServer.configs.kotlin.buildFeatures.provideAwsCredentials
 
-val x64_Debug = CarbonBuildLinux("Debug MacOS x64", "Debug", "x64-linux-debug", "amd64")
-val x64_Release = CarbonBuildLinux("Release MacOS x64", "Release", "x64-linux-release", "amd64")
+val linux_x64_Debug = CarbonBuildLinux("Debug Linux x64", "Debug", "x64-linux-debug", "amd64")
+val linux_x64_Release = CarbonBuildLinux("Release Linux x64", "Release", "x64-linux-release", "amd64")
 
-val arm64_Debug = CarbonBuildLinux("Debug MacOS x64", "Debug", "arm64-linux-debug", "aarch64")
-val arm64_Release = CarbonBuildLinux("Release MacOS x64", "Release", "arm64-linux-release", "aarch64")
+val linux_arm64_Debug = CarbonBuildLinux("Debug Linux arm64", "Debug", "arm64-linux-debug", "aarch64")
+val linux_arm64_Release = CarbonBuildLinux("Release Linux arm64", "Release", "arm64-linux-release", "aarch64")
 
 object Project : Project({
     id("Linux")
@@ -32,10 +32,10 @@ object Project : Project({
 
     buildType(_Self.buildTypes.CreateUniversalBuilds)
 
-    buildType(x64_Debug)
-    buildType(x64_Release)
-    buildType(arm64_Debug)
-    buildType(arm64_Release)
+    buildType(linux_x64_Debug)
+    buildType(linux_x64_Release)
+    buildType(linux_arm64_Debug)
+    buildType(linux_arm64_Release)
 })
 
 class CarbonBuildLinux(buildName: String, configType: String, preset: String, agentArchitecture: String) : BuildType({
