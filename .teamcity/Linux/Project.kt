@@ -5,7 +5,6 @@ import jetbrains.buildServer.configs.kotlin.Project
 import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildFeatures.runInDocker
 import jetbrains.buildServer.configs.kotlin.buildFeatures.dockerSupport
-import jetbrains.buildServer.configs.kotlin.buildFeatures.runInDockerBuildFeature
 import jetbrains.buildServer.configs.kotlin.buildFeatures.PullRequests
 import jetbrains.buildServer.configs.kotlin.buildFeatures.XmlReport
 import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
@@ -131,10 +130,8 @@ class CarbonBuildLinux(buildName: String, configType: String, preset: String, ag
 
     features {
         runInDocker {
+            id = "RunInDocker"
             dockerImage = "906334554726.dkr.ecr.eu-west-1.amazonaws.com/carbon-linux-gcc:0"
-            dockerImagePlatform = RunInDockerBuildFeature.ImagePlatform.Linux
-            dockerPull = true
-            dockerRunParameters = "-a stdin -a stdout -i -t ubuntu /bin/bash"
         }
         dockerSupport {
             loginToRegistry = on {
