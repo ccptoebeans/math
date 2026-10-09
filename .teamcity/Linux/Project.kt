@@ -177,6 +177,7 @@ class CarbonBuildLinux(buildName: String, configType: String, preset: String, ag
     requirements {
         startsWith("teamcity.agent.jvm.os.name", "Linux")
         startsWith("teamcity.agent.jvm.os.arch", agentArchitecture)
+        noLessThanVer("env.FENRIS_AGENT_VERSION", "1.0.0")
     }
 })
 
