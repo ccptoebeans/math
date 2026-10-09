@@ -22,10 +22,10 @@ import jetbrains.buildServer.configs.kotlin.triggers.vcs
 import jetbrains.buildServer.configs.kotlin.vcs.GitVcsRoot
 import jetbrains.buildServer.configs.kotlin.buildFeatures.provideAwsCredentials
 
-val amd64_Debug = CarbonBuildLinux("Debug Linux amd64", "Debug", "amd64-linux-debug", "amd64")
-val amd64_Internal = CarbonBuildLinux("Internal Linux amd64", "Internal", "amd64-linux-internal", "amd64")
-val amd64_TrinityDev = CarbonBuildLinux("TrinityDev Linux amd64", "TrinityDev", "amd64-linux-trinitydev", "amd64")
-val amd64_Release = CarbonBuildLinux("Release Linux amd64", "Release", "amd64-linux-release", "amd64")
+val amd64_Debug = CarbonBuildLinux("Debug Linux amd64", "Debug", "x64-linux-debug", "amd64")
+val amd64_Internal = CarbonBuildLinux("Internal Linux amd64", "Internal", "x64-linux-internal", "amd64")
+val amd64_TrinityDev = CarbonBuildLinux("TrinityDev Linux amd64", "TrinityDev", "x64-linux-trinitydev", "amd64")
+val amd64_Release = CarbonBuildLinux("Release Linux amd64", "Release", "x64-linux-release", "amd64")
 
 object Project : Project({
     id("Linux")
