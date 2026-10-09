@@ -62,9 +62,6 @@ class CarbonBuildLinux(buildName: String, configType: String, preset: String, ag
         param("env.X_VCPKG_REGISTRIES_CACHE", "%teamcity.build.checkoutDir%/%github_checkout_folder%/regcache")
         param("env.CMAKE_BUILD_PARALLEL_LEVEL", "8")
         param("env.CTEST_PARALLEL_LEVEL", "8")
-        param("env.GIT_CONFIG_COUNT", "2")
-        param("env.GIT_CONFIG_KEY_1", "safe.directory")
-        param("env.GIT_CONFIG_VALUE_1", "%teamcity.build.checkoutDir%")
     }
 
 
@@ -135,6 +132,7 @@ class CarbonBuildLinux(buildName: String, configType: String, preset: String, ag
         runInDocker {
             id = "RunInDocker"
             dockerImage = "906334554726.dkr.ecr.eu-west-1.amazonaws.com/carbon-linux-gcc:0"
+            dockerRunParameters = "--user=1001:1001"
         }
         dockerSupport {
             loginToRegistry = on {
