@@ -62,6 +62,9 @@ class CarbonBuildLinux(buildName: String, configType: String, preset: String, ag
         param("env.X_VCPKG_REGISTRIES_CACHE", "%teamcity.build.checkoutDir%/%github_checkout_folder%/regcache")
         param("env.CMAKE_BUILD_PARALLEL_LEVEL", "8")
         param("env.CTEST_PARALLEL_LEVEL", "8")
+        param("env.GIT_CONFIG_COUNT", 2)
+        param("env.GIT_CONFIG_KEY_1", "safe.directory")
+        param("env.GIT_CONFIG_VALUE_1", "%teamcity.build.checkoutDir%"")
     }
 
 
